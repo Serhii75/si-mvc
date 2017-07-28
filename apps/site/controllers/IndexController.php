@@ -1,10 +1,10 @@
 <?php
 
-namespace modules\admin\controllers;
+namespace apps\site\controllers;
 
 use core\Controller;
 
-class IndexController extends Controller
+class IndexController extends Controller 
 {
 	public function __construct()
 	{
@@ -14,10 +14,5 @@ class IndexController extends Controller
 	public function actionIndex()
 	{
 		$this->render('index/index', []);
-	}
-
-	public function actionTest()
-	{
-		echo 'Admin test action';
 	}
 }

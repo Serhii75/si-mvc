@@ -1,10 +1,10 @@
 <?php
 
-namespace modules\site\controllers;
+namespace modules\mainmenu\controllers;
 
 use core\Controller;
 
-class IndexController extends Controller 
+class MainmenuController extends Controller 
 {
 	public function __construct()
 	{
@@ -13,6 +13,6 @@ class IndexController extends Controller
 
 	public function actionIndex()
 	{
-		$this->render('index/index', []);
+		echo 'I am the mainmenu module';
 	}
 }

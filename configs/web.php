@@ -7,12 +7,18 @@ return [
 		'user' => 'root',
 		'password' => ''
 	],
-	'modules' => [
+	'apps' => [
 		'site' => 'site',
 		'admin' => 'admin'
 	],
 	'template' => [
 		'templatesDir' => ROOT . '/views',
 		'layoutDir' => ROOT . '/views/layout'
+	],
+	'defaults' => [
+		'defaultApp' => 'site',
+		'defaultController' => 'index',
+		'defaultAction' => 'index',
+		'defaultLanguage' => 'uk'
 	]
 ];

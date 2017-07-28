@@ -4,7 +4,7 @@ namespace core;
 
 class Router
 {
-	private static $module;
+	private static $app;
 
 	private static $controller;
 
@@ -17,18 +17,18 @@ class Router
 		$parts = explode('?', $_SERVER['REQUEST_URI']);
 		$params = explode('/', trim($parts[0], '/'));
 
-		$modules = Registry::get('config')->get('modules');
-		if ( array_key_exists($params[0], $modules) ) {
-			self::$module = array_shift($params);
+		$apps = Registry::get('config')->get('apps');
+		if ( array_key_exists($params[0], $apps) ) {
+			self::$app = array_shift($params);
 		} else {
-			self::$module = 'site';
+			self::$app = Registry::get('config')->get('defaults.defaultApp');
 		}
 
 		$controller = array_shift($params);
-		self::$controller = self::prepareClassName($controller ?: 'index');
+		self::$controller = self::prepareClassName($controller ?: Registry::get('config')->get('defaults.defaultController'));
 
 		$action = array_shift($params);
-		self::$action = self::prepareActionName($action ?: 'index');
+		self::$action = self::prepareActionName($action ?: Registry::get('config')->get('defaults.defaultAction'));
 
 		$keys = [];
 		$values = [];
@@ -47,7 +47,7 @@ class Router
 
 	public static function prepareClassName($class)
 	{
-		return 'modules\\' . self::$module . '\\controllers\\' . self::camelize($class) . 'Controller';
+		return 'apps\\' . self::$app . '\\controllers\\' . self::camelize($class) . 'Controller';
 	}
 
 	private static function prepareActionName($action)

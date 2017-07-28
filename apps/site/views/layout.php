@@ -1,3 +1,9 @@
+<?php
+
+use core\Module; 
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,6 +18,8 @@
 	<?= '<h2>Footer</h2>' ?>
 
 	
+	<?php Module::_('mainmenu'); ?>
+
 	<script
   src="https://code.jquery.com/jquery-3.2.1.min.js"
   integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
