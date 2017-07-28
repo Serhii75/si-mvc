@@ -13,11 +13,10 @@ class Module
 		$parts = explode('/', $module);
 
 		if ( count($parts) > 0 ) {
-			$controller = 'modules' . DIRECTORY_SEPARATOR . $parts[0] . DIRECTORY_SEPARATOR . 'controllers' 
-				. DIRECTORY_SEPARATOR . ucfirst($parts[0]) . 'Controller';
-			$path = ROOT . DIRECTORY_SEPARATOR . $controller . '.php';
-
-			//echo $controller;
+			$controller = 'modules\\'. $parts[0] . '\\controllers\\' 
+				. ucfirst($parts[0]) . 'Controller';
+			$path = ROOT . DIRECTORY_SEPARATOR . str_replace('\\', DIRECTORY_SEPARATOR, $controller) . '.php';
+			
 			if ( file_exists($path) ) {
 				require_once $path;
 
@@ -26,6 +25,7 @@ class Module
 
 				return call_user_func([$controller, $action]); 
 			}
+			
 		}
 	}
 }

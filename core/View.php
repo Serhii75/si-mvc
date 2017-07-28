@@ -19,6 +19,7 @@ class View
 		
 		if ( !$layout ) {
 			echo $content;
+			return;
 		}
 
 		$layout = $prefix . DIRECTORY_SEPARATOR . $layout . '.php';

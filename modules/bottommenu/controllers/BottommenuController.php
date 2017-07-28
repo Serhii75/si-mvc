@@ -1,10 +1,10 @@
 <?php
 
-namespace modules\mainmenu\controllers;
+namespace modules\bottommenu\controllers;
 
 use core\Controller;
 
-class MainmenuController extends Controller 
+class BottommenuController extends Controller 
 {
 	public function __construct()
 	{

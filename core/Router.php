@@ -4,6 +4,8 @@ namespace core;
 
 class Router
 {
+	private static $language;
+
 	private static $app;
 
 	private static $controller;
@@ -17,8 +19,15 @@ class Router
 		$parts = explode('?', $_SERVER['REQUEST_URI']);
 		$params = explode('/', trim($parts[0], '/'));
 
+		$languages = Registry::get('config')->get('languages');
+		if ( count($params) > 0 && array_key_exists($params[0], $languages) ) {
+			self::$language = array_shift($params);
+		} else {
+			self::$language = Registry::get('config')->get('defaults.defaultLanguage');
+		}
+
 		$apps = Registry::get('config')->get('apps');
-		if ( array_key_exists($params[0], $apps) ) {
+		if ( count($params) > 0 && array_key_exists($params[0], $apps) ) {
 			self::$app = array_shift($params);
 		} else {
 			self::$app = Registry::get('config')->get('defaults.defaultApp');
@@ -39,6 +48,8 @@ class Router
 				$values[] = $value;
 			}
 		}
+
+		//var_dump(self::$controller, self::$action);
 
 		self::$params = array_combine(array_slice($keys, 0, count($values)), $values);
 

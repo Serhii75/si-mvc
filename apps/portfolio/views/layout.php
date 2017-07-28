@@ -8,18 +8,17 @@ use core\Module;
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Site Layout</title>
+	<title>Portfolio Layout</title>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
 
 </head>
 <body>
 	<?= '<h2>Header / navigation</h2>' ?>
-	<?php Module::_('mainmenu'); ?>
 	<?= $content ?>
 	<?= '<h2>Footer</h2>' ?>
 
 	
-	<?php Module::_('bottommenu'); ?>
+	<?php Module::_('mainmenu'); ?>
 
 	<script
   src="https://code.jquery.com/jquery-3.2.1.min.js"

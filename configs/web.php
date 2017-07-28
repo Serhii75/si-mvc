@@ -8,8 +8,16 @@ return [
 		'password' => ''
 	],
 	'apps' => [
+		'admin' => 'admin',
+		'blog' => 'blog',
+		'portfolio' => 'portfolio',
 		'site' => 'site',
-		'admin' => 'admin'
+		
+	],
+	'languages' => [
+		'uk' => 'ukrainian',
+		'en' => 'english',
+		'ru' => 'russian'
 	],
 	'template' => [
 		'templatesDir' => ROOT . '/views',
