@@ -2,6 +2,8 @@
 
 namespace core;
 
+//use helpers;
+
 class Router
 {
 	private static $language;
@@ -17,13 +19,15 @@ class Router
 	public static function dispatch()
 	{
 		$parts = explode('?', $_SERVER['REQUEST_URI']);
-		$params = explode('/', trim($parts[0], '/'));
+		$params = array_filter(explode('/', trim($parts[0], '/')));
 
 		$languages = Registry::get('config')->get('languages');
-		if ( count($params) > 0 && array_key_exists($params[0], $languages) ) {
-			self::$language = array_shift($params);
+		if ( count($params) == 0 || !array_key_exists($params[0], $languages) ) {
+			$language = Registry::get('config')->get('defaults.defaultLanguage');
+			(count($params) > 0 && mb_strlen($params[0]) > 2) || array_shift($params);
+			redirect(BASE_URL . '/' . $language . '/' . implode('/', $params));
 		} else {
-			self::$language = Registry::get('config')->get('defaults.defaultLanguage');
+			self::$language = array_shift($params);
 		}
 
 		$apps = Registry::get('config')->get('apps');
@@ -48,8 +52,6 @@ class Router
 				$values[] = $value;
 			}
 		}
-
-		//var_dump(self::$controller, self::$action);
 
 		self::$params = array_combine(array_slice($keys, 0, count($values)), $values);
 

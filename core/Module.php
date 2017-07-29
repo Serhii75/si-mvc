@@ -15,7 +15,7 @@ class Module
 		if ( count($parts) > 0 ) {
 			$controller = 'modules\\'. $parts[0] . '\\controllers\\' 
 				. ucfirst($parts[0]) . 'Controller';
-			$path = ROOT . DIRECTORY_SEPARATOR . str_replace('\\', DIRECTORY_SEPARATOR, $controller) . '.php';
+			$path = BASE_PATH . DS . str_replace('\\', DS, $controller) . '.php';
 			
 			if ( file_exists($path) ) {
 				require_once $path;

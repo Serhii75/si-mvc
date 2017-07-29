@@ -20,8 +20,8 @@ return [
 		'ru' => 'russian'
 	],
 	'template' => [
-		'templatesDir' => ROOT . '/views',
-		'layoutDir' => ROOT . '/views/layout'
+		'templatesDir' => BASE_PATH . '/views',
+		'layoutDir' => BASE_PATH . '/views/layout'
 	],
 	'defaults' => [
 		'defaultApp' => 'site',

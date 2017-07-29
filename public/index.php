@@ -1,19 +1,10 @@
 <?php
 
-use core\Config;
-use core\Registry;
-use core\Router;
+define('BASE_PATH', dirname(__DIR__));
+define('DS', DIRECTORY_SEPARATOR);
 
-define('ROOT', dirname(__DIR__));
+$prototype = 'http' . ((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on') ? 's' : '') . '://';
+$server = isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : $_SERVER['SERVER_NAME'];
+define('BASE_URL', $prototype . $server);
 
-require_once ROOT . '/core/MapAutoloader.php';
-
-$autoloader = new core\MapAutoloader();
-spl_autoload_register([$autoloader, 'autoload']);
-
-$config = require_once ROOT . '/configs/web.php';
-Config::getInstance()->set($config);
-
-Registry::set('config', Config::getInstance());
-
-Router::dispatch();
+require_once BASE_PATH . DS . 'init.php';

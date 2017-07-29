@@ -30,9 +30,9 @@ class Controller
 	private function getPathPrefix()
 	{
 		$parts = array_slice(explode('\\', get_called_class()), 0, 2);
-		array_unshift($parts, ROOT);
+		array_unshift($parts, BASE_PATH);
 		array_push($parts, 'views');
-		$prefix = implode(DIRECTORY_SEPARATOR, $parts);
+		$prefix = implode(DS, $parts);
 
 		return $prefix;
 	}
